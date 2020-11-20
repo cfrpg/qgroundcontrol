@@ -1,12 +1,11 @@
 /****************************************************************************
  *
- *   (c) 2009-2016 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
  * QGroundControl is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
  *
  ****************************************************************************/
-
 
 #include "MultiSignalSpy.h"
 #include <QEventLoop>
@@ -58,12 +57,8 @@ bool MultiSignalSpy::init(QObject*        signalEmitter,    ///< [in] object whi
     Q_ASSERT(_rgSpys != nullptr);
     for (size_t i=0; i<_cSignals; i++) {
         _rgSpys[i] = new QSignalSpy(_signalEmitter, _rgSignals[i]);
-        if (_rgSpys[i] == nullptr) {
-            qDebug() << "Unabled to allocated QSignalSpy";
-            return false;
-        }
         if (!_rgSpys[i]->isValid()) {
-            qDebug() << "Invalid signal";
+            qDebug() << "Invalid signal: index" << i;
             return false;
         }
     }

@@ -1,32 +1,50 @@
 
-add_library(FlightDisplay
-	VideoManager.cc
-)
-
-target_link_libraries(FlightDisplay
-	PRIVATE
-		qgc
-)
-
 add_custom_target(FligthDisplayQml
-SOURCES
-	FlightDisplayView.qml       
-	FlightDisplayViewDummy.qml  
-	FlightDisplayViewMap.qml    
-	FlightDisplayViewUVC.qml      
-	FlightDisplayViewVideo.qml    
-	FlightDisplayViewWidgets.qml  
-	GuidedActionConfirm.qml       
-	GuidedActionList.qml         
-	GuidedActionsController.qml  
-	GuidedAltitudeSlider.qml     
-	MultiVehicleList.qml         
-	PreFlightBatteryCheck.qml        
-	PreFlightGPSCheck.qml
-	PreFlightRCCheck.qml             
-	PreFlightSensorsHealthCheck.qml  
-	PreFlightSoundCheck.qml
-	VirtualJoystick.qml
+	SOURCES
+		DefaultChecklist.qml
+		FixedWingChecklist.qml
+		FlightDisplayViewDummy.qml
+		FlightDisplayViewUVC.qml
+		FlightDisplayViewVideo.qml
+		FlightDisplayViewWidgets.qml
+		FlyViewAirspaceIndicator.qml
+		FlyViewCustomLayer.qml
+		FlyViewInstrumentPanel.qml
+		FlyViewMap.qml
+		FlyViewMissionCompleteDialog.qml
+		FlyViewPreFlightChecklistPopup.qml
+		FlyView.qml
+		FlyViewToolStripActionList.qml
+		FlyViewToolStrip.qml
+		FlyViewVideo.qml
+		FlyViewWidgetLayer.qml
+		GuidedActionActionList.qml
+		GuidedActionConfirm.qml
+		GuidedActionLand.qml
+		GuidedActionList.qml
+		GuidedActionPause.qml
+		GuidedActionRTL.qml
+		GuidedActionsController.qml
+		GuidedActionTakeoff.qml
+		GuidedAltitudeSlider.qml
+		GuidedToolStripAction.qml
+		MultiRotorChecklist.qml
+		MultiVehicleList.qml
+		PreFlightBatteryCheck.qml
+		PreFlightCheckList.qml
+		PreFlightCheckListShowAction.qml
+		PreFlightGPSCheck.qml
+		PreFlightRCCheck.qml
+		PreFlightSensorsHealthCheck.qml
+		PreFlightSoundCheck.qml
+		ProximityRadarValues.qml
+		ProximityRadarVideoView.qml
+		RoverChecklist.qml
+		SubChecklist.qml
+		TelemetryValuesBar.qml
+		TerrainProgress.qml
+		VehicleWarnings.qml
+		VirtualJoystick.qml
+		VTOLChecklist.qml
 )
 
-target_include_directories(FlightDisplay PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

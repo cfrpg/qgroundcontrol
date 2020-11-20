@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   (c) 2009-2016 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
  * QGroundControl is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
@@ -180,12 +180,7 @@ CalWorkerThread::calibrate_return CalWorkerThread::mag_calibration_worker(detect
             break;
         }
 
-        int prev_count[max_mags];
-        bool rejected = false;
-
         for (size_t cur_mag=0; cur_mag<max_mags; cur_mag++) {
-            prev_count[cur_mag] = worker_data->calibration_counter_total[cur_mag];
-
             if (!rgCompassAvailable[cur_mag]) {
                 continue;
             }
@@ -200,21 +195,11 @@ CalWorkerThread::calibrate_return CalWorkerThread::mag_calibration_worker(detect
             worker_data->calibration_counter_total[cur_mag]++;
         }
 
-        // Keep calibration of all mags in lockstep
-        if (rejected) {
-            qCDebug(APMCompassCalLog) << QStringLiteral("Point rejected");
+        calibration_counter_side++;
 
-            // Reset counts, since one of the mags rejected the measurement
-            for (size_t cur_mag = 0; cur_mag < max_mags; cur_mag++) {
-                worker_data->calibration_counter_total[cur_mag] = prev_count[cur_mag];
-            }
-        } else {
-            calibration_counter_side++;
-
-            // Progress indicator for side
-            _emitVehicleTextMessage(QStringLiteral("[cal] %1 side calibration: progress <%2>").arg(detect_orientation_str(orientation)).arg(progress_percentage(worker_data) +
-                                                                                                                                     (unsigned)((100 / calibration_sides) * ((float)calibration_counter_side / (float)worker_data->calibration_points_perside))));
-        }
+        // Progress indicator for side
+        _emitVehicleTextMessage(QStringLiteral("[cal] %1 side calibration: progress <%2>").arg(detect_orientation_str(orientation)).arg(progress_percentage(worker_data) +
+                                                                                                                                        (unsigned)((100 / calibration_sides) * ((float)calibration_counter_side / (float)worker_data->calibration_points_perside))));
 
         usleep(loop_interval_usecs);
     }

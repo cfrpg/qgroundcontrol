@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   (c) 2009-2016 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
  * QGroundControl is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
@@ -11,7 +11,7 @@
 /**
  * @file
  *   @brief QGC Compass Widget
- *   @author Gus Grubba <mavlink@grubba.com>
+ *   @author Gus Grubba <gus@auterion.com>
  */
 
 import QtQuick              2.3
@@ -31,14 +31,15 @@ Item {
     property real size:     _defaultSize
     property var  vehicle:  null
 
-    property real _defaultSize:     ScreenTools.defaultFontPixelHeight * (10)
-    property real _sizeRatio:       ScreenTools.isTinyScreen ? (size / _defaultSize) * 0.5 : size / _defaultSize
-    property int  _fontSize:        ScreenTools.defaultFontPointSize * _sizeRatio
-    property real _heading:         vehicle ? vehicle.heading.rawValue : 0
-    property real _headingToHome:   vehicle ? vehicle.headingToHome.rawValue : 0
-    property real _groundSpeed:     vehicle ? vehicle.groundSpeed.rawValue : 0
-    property real _headingToNextWP: vehicle ? vehicle.headingToNextWP.rawValue : 0
-    property real _courseOverGround:activeVehicle ? activeVehicle.gps.courseOverGround.rawValue : 0
+    property var  _activeVehicle:       QGroundControl.multiVehicleManager.activeVehicle
+    property real _defaultSize:         ScreenTools.defaultFontPixelHeight * (10)
+    property real _sizeRatio:           ScreenTools.isTinyScreen ? (size / _defaultSize) * 0.5 : size / _defaultSize
+    property int  _fontSize:            ScreenTools.defaultFontPointSize * _sizeRatio
+    property real _heading:             vehicle ? vehicle.heading.rawValue : 0
+    property real _headingToHome:       vehicle ? vehicle.headingToHome.rawValue : 0
+    property real _groundSpeed:         vehicle ? vehicle.groundSpeed.rawValue : 0
+    property real _headingToNextWP:     vehicle ? vehicle.headingToNextWP.rawValue : 0
+    property real _courseOverGround:    _activeVehicle ? _activeVehicle.gps.courseOverGround.rawValue : 0
 
     property bool usedByMultipleVehicleList:  false
 

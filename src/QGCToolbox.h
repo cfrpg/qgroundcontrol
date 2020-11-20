@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   (c) 2009-2016 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
  * QGroundControl is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
@@ -33,6 +33,7 @@ class MAVLinkLogManager;
 class QGCCorePlugin;
 class SettingsManager;
 class AirspaceManager;
+class ADSBVehicleManager;
 #if defined(QGC_ENABLE_PAIRING)
 class PairingManager;
 #endif
@@ -67,6 +68,7 @@ public:
     QGCCorePlugin*              corePlugin              () { return _corePlugin; }
     SettingsManager*            settingsManager         () { return _settingsManager; }
     AirspaceManager*            airspaceManager         () { return _airspaceManager; }
+    ADSBVehicleManager*         adsbVehicleManager      () { return _adsbVehicleManager; }
 #if defined(QGC_ENABLE_PAIRING)
     PairingManager*             pairingManager          () { return _pairingManager; }
 #endif
@@ -106,6 +108,7 @@ private:
     QGCCorePlugin*              _corePlugin             = nullptr;
     SettingsManager*            _settingsManager        = nullptr;
     AirspaceManager*            _airspaceManager        = nullptr;
+    ADSBVehicleManager*         _adsbVehicleManager     = nullptr;
 #if defined(QGC_ENABLE_PAIRING)
     PairingManager*             _pairingManager         = nullptr;
 #endif
